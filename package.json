@@ -1,0 +1,33 @@
+{
+  "name": "sprockets-factory",
+  "version": "0.0.1",
+  "description": "NodeJS Backend Challenge",
+  "main": "bin/main.js",
+  "scripts": {
+    "start": "node app/main.js",
+    "start:dev": "eslint . && nodemon app/main.js",
+    "test": "jest --coverage",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joseortizd/sprockets-factory.git"
+  },
+  "author": "José Ortiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joseortizd/sprockets-factory/issues"
+  },
+  "homepage": "https://github.com/joseortizd/sprockets-factory#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "helmet": "^7.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0",
+    "nodemon": "^3.1.1"
+  }
+}
