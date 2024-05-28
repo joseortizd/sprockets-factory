@@ -32,4 +32,12 @@ PORT=3000
 The project will run on port 3000 by default.
 
 
+### Required Configurations:
+
+You need to have defined the following environment variables in a .env file at the root of the project:
+```
+CONNECTION_STRING=...
+SPROCKETS_STRATEGY= (MEMORY | SEQUELIZE)
+```
+
 
