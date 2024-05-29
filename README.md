@@ -75,4 +75,4 @@ docker-compose up
 - Start development server: `npm run start:dev`
 
 ### API Documentation:
-Postman collection is insede docs/collection folder
+Postman collection is inside docs/collection folder
