@@ -1,12 +1,13 @@
 const { SprocketsRepository } = require('../../../../domain/repository/sprockets/sprockets.repository');
+const { SprocketsData } = require('./sprocetsData');
 
 class SprocketsMemoryRepository extends SprocketsRepository {
     constructor() {
         super();
-        this.sprockets = [];
+        this.sprockets = SprocketsData;
     }
 
-    async getSprockets(page = 1, pageSize = 10) {
+    async getSprockets(page, pageSize) {
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
 
@@ -21,19 +22,43 @@ class SprocketsMemoryRepository extends SprocketsRepository {
                 current_page: page,
                 page_size: pageSize
             },
-            data: slicedSprockets
+            data: slicedSprockets.map(s => this.camelToSnake(s))
         };
     }
 
+    async getSprocketById(id) {
+        return this.camelToSnake(this.sprockets.find(s => s.id == id));
+    }
+
+    async updateSprocket(sprocket, id) {
+        const index = this.sprockets.findIndex(s => s.id == id);
+        if (index === -1) {
+            return null;
+        }
+
+        this.sprockets[index] = Object.assign({}, this.sprockets[index], sprocket);;
+        return this.camelToSnake(this.sprockets[index]);
+    }
+
     async saveSprocket(sprocket) {
-        this.sprockets.push(sprocket);
-        console.log(this.sprockets)
-        return sprocket;
+        const newSprocket = {...sprocket, id: this.sprockets.length+1};
+        this.sprockets.push(newSprocket);
+        return this.camelToSnake(newSprocket);
     }
 
     async saveSprockets(sprockets) {
-        this.sprockets = [...this.sprockets,...sprockets];
-        return sprockets;
+        let sprocketsWithId = sprockets.map((s, i) => ({...s, id: this.sprockets.length+i+1}));
+        this.sprockets = [...this.sprockets,...sprocketsWithId];
+        return this.sprockets.map(s => this.camelToSnake(s));
+    }
+
+    camelToSnake(obj) {
+        const snakeObj = {};
+        for (let key in obj) {
+            const snakeKey = key.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+            snakeObj[snakeKey] = obj[key];
+        }
+        return snakeObj;
     }
 }
 

@@ -1,9 +1,9 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const SequelizeConnection = require("../sequelizeConnection");
+const { DataTypes } = require('sequelize');
+const SequelizeConnection = require("../../../settings/sequelizeConnection");
 
 let sequelize = new SequelizeConnection().sequelize;
 
-const Model = sequelize.define('Sprocket', {
+const SprocketModel = sequelize.define('Sprocket', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -27,9 +27,4 @@ const Model = sequelize.define('Sprocket', {
     }
 }, { underscored: true, timestamps: true });
 
-(async () => {
-    await sequelize.sync();
-    console.info("Model synchronized successfully.");
-})();
-
-module.exports = Model;
+module.exports = SprocketModel;
