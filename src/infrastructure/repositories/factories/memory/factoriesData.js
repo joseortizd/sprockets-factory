@@ -1,6 +1,5 @@
 const factories = [
-    {
-        "factory": {
+ {
             "id": 1,
             "chart_data": {
                 "sprocket_production_actual": [
@@ -71,9 +70,8 @@ const factories = [
                 ]
             }
         }
-    },
-    {
-        "factory": {
+    ,
+ {
             id: 2,
             "chart_data": {
                 "sprocket_production_actual": [
@@ -143,10 +141,9 @@ const factories = [
                     1611205958
                 ]
             }
-        }
+
     },
-    {
-        "factory": {
+{
             "id": 3,
             "chart_data": {
                 "sprocket_production_actual": [
@@ -217,7 +214,7 @@ const factories = [
                 ]
             }
         }
-    }
+
 ]
 
 module.exports = { FactoriesData : factories }

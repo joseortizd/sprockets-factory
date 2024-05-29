@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const SequelizeConnection = require("../../../settings/sequelizeConnection");
-const Factory = require("./factory.model");
 let sequelize = new SequelizeConnection().sequelize;
 
 const ChartData = sequelize.define('ChartData', {

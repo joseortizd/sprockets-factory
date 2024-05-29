@@ -9,6 +9,8 @@ jest.mock('../../src/infrastructure/repositories/sprockets/sequelize/models/spro
     update: jest.fn(),
 }));
 
+jest.mock('../../src/infrastructure/repositories/settings/sequelizeConnection', () => ({}));
+
 describe('SprocketsSequelizeRepository', () => {
     let repository;
 

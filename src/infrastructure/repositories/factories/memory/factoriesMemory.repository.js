@@ -27,7 +27,7 @@ class FactoriesMemoryRepository extends FactoriesRepository {
     }
 
     async getFactoryById(id) {
-        return this.factories.find(f => f.factory.id == id);
+        return this.factories.find(f => f.id == id);
     }
 }
 

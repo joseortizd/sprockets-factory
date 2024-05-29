@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const SequelizeConnection = require("../../../settings/sequelizeConnection");
-
 let sequelize = new SequelizeConnection().sequelize;
 
 const SprocketModel = sequelize.define('Sprocket', {
