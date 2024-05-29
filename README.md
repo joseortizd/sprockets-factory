@@ -27,17 +27,52 @@ PORT=3000
 ### Run project using Docker:
 1. Clone the repository
 2. Run `docker build -t sprockets-factory .`
-3. Run `docker run -p 3000:3000 sprockets-factory`
+3. Run `docker run -p 3000:3000 -it sprockets-factory`
+4. Run `node ./config/init.js` to create the database and tables. (Only if you want to use postgres database)
 
 The project will run on port 3000 by default.
 
 
-### Required Configurations:
+### Required Configurations for running locally on a docker container:
 
 You need to have defined the following environment variables in a .env file at the root of the project:
-```
-CONNECTION_STRING=...
-SPROCKETS_STRATEGY= (MEMORY | SEQUELIZE)
-```
 
+If you want to use a postgres database, you need to define the following environment variables:
+```
+SPROCKETS_STRATEGY=SEQUELIZE
+FACTORIES_STRATEGY=SEQUELIZE
+DB_PASSWORD=
+DB_NAME=sprockets_factory
+DB_USER=
+DB_HOST=
+DB_PORT=5432
+```
+> [!TIP]
+> If you need to change the database name, please update the file ./config/init.sql and set the new database name.
 
+If yoy want to use a memory database, you don't need to define the environment variables.
+
+### In case you need to mount a container with a docker postgres and run the project on docker too you must:
+1. Create the .env file with the following environment variables:
+```
+SPROCKETS_STRATEGY=SEQUELIZE
+FACTORIES_STRATEGY=SEQUELIZE
+DB_PASSWORD=
+DB_NAME=sprockets_factory
+DB_USER=
+DB_HOST=postgres
+DB_PORT=5432
+```
+2. Run the following command to run docker-compose:
+```
+docker-compose up
+```
+3. The project will run on port 3000 by default, wait until is ready.
+
+### Others Commands:
+- Run tests: `npm run test`
+- Run lint: `npm run lint`
+- Start development server: `npm run start:dev`
+
+### API Documentation:
+Postman collection is inside docs/collection folder

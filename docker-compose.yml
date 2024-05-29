@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - app_network
+    volumes:
+      - /Users/joseortiz/Documents/postgresdb:/var/lib/postgresql/data  #Change this path to your local path
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      SPROCKETS_STRATEGY: SEQUELIZE
+      FACTORIES_STRATEGY: SEQUELIZE
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - app_network
+    command: >
+      sh -c "dockerize -wait tcp://postgres:5432 -timeout 1m && node ./config/init.js && npm run start"
+
+networks:
+  app_network:
+    driver: bridge
