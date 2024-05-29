@@ -1,5 +1,33 @@
 const request = require('supertest');
 const app = require('../../../config/app');
+jest.mock('../../../src/infrastructure/repositories/settings/sequelizeConnection', () => {
+    return class SequelizeConnection {
+        constructor() {
+            this.sequelize = {
+                define: jest.fn().mockReturnThis(),
+                sync: jest.fn()
+            };
+
+        }
+    };
+});
+
+jest.mock('../../../src/infrastructure/repositories/sprockets/sequelize/models/sprocket.model', () => ({
+    findAndCountAll: jest.fn(),
+    findByPk: jest.fn(),
+    create: jest.fn(),
+    bulkCreate: jest.fn(),
+    update: jest.fn(),
+}));
+
+jest.mock('../../../src/infrastructure/repositories/factories/sequelize/models/factory.model', () => ({
+    hasMany: jest.fn(),
+    findAndCountAll: jest.fn(),
+    findByPk: jest.fn()
+}));
+jest.mock('../../../src/infrastructure/repositories/factories/sequelize/models/chartData.model', () => ({
+    findOne: jest.fn()
+}));
 
 describe('GET /factory', () => {
     it('should return a empty factory list', async () => {
