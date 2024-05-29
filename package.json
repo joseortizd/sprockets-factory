@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app/main.js",
     "start:dev": "nodemon app/main.js",
-    "test": "jest --coverage",
+    "test": "jest --coverage --forceExit",
     "lint": "eslint .",
     "lint-fix": "eslint --fix ."
   },

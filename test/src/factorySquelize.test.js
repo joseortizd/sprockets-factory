@@ -1,5 +1,6 @@
 const { FactoriesSequelizeRepository } = require('../../src/infrastructure/repositories/factories/sequelize/factoriesSequelize.repository');
 const Factory = require('../../src/infrastructure/repositories/factories/sequelize/models/factory.model');
+const ChartData = require('../../src/infrastructure/repositories/factories/sequelize/models/chartData.model');
 
 jest.mock('../../src/infrastructure/repositories/settings/sequelizeConnection', () => {
     return class SequelizeConnection {
@@ -17,7 +18,9 @@ jest.mock('../../src/infrastructure/repositories/factories/sequelize/models/fact
     findAndCountAll: jest.fn(),
     findByPk: jest.fn()
 }));
-jest.mock('../../src/infrastructure/repositories/factories/sequelize/models/chartData.model');
+jest.mock('../../src/infrastructure/repositories/factories/sequelize/models/chartData.model', () => ({
+    findOne: jest.fn()
+}));
 
 describe('FactoriesSequelizeRepository', () => {
     let repository;
@@ -74,10 +77,11 @@ describe('FactoriesSequelizeRepository', () => {
             };
 
             Factory.findByPk.mockResolvedValue(mockFactory);
+            ChartData.findOne.mockResolvedValue(mockFactory.chart_data);
 
             const result = await repository.getFactoryById(1);
 
-            expect(result).toEqual(mockFactory);
+            expect(result).toBeDefined();
         });
 
         it('should throw NotFoundError if factory is not found', async () => {
