@@ -75,5 +75,4 @@ docker-compose up
 - Start development server: `npm run start:dev`
 
 ### API Documentation:
-Postman collection is available at the following link:
-[API Documentation](https://api.postman.com/collections/1608722-49b8d3b9-1552-488a-88b8-b78d3642b274?access_key=PMAT-01HZ32D7Y9ZHR4XV9VEYWFNX1F)
+Postman collection is insede docs/collection folder
