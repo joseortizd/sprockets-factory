@@ -46,7 +46,13 @@ class FactoriesSequelizeRepository extends FactoriesRepository {
             if (!factory) {
                 throw new Error('NotFoundError');
             }
-            return factory;
+            const chartData = await ChartData.findOne({
+                where: {
+                    factory_factory_id: id
+                },
+                attributes: { exclude: ['id', 'FactoryFactoryId', 'createdAt', 'updatedAt'] }
+            });
+            return {id: id,...chartData.dataValues};
         } catch (error) {
             console.error('Error getting factory by id: ', error);
             if (error.message === 'NotFoundError') {
