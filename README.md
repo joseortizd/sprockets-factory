@@ -76,3 +76,10 @@ docker-compose up
 
 ### API Documentation:
 Postman collection is inside docs/collection folder
+
+### EXTRA:
+- The project has CI/CD with Github Actions, the workflow is inside .github/workflows folder, it runs the tests and deploy the application into app engine on Google Cloud Platform.
+- The project has a docker-compose file to run the project with a postgres database.
+- The project has a Dockerfile to run the project in a container.
+- The project has unit tests with coverage over 80%.
+- The project has a linter to keep the code clean.

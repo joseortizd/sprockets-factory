@@ -3,10 +3,10 @@ name: Deploy to Goggle App Engine (GAE)
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
@@ -16,16 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js and yarn
+      - name: Setup Node.js and npm
         uses: actions/setup-node@v4
         with:
           node-version: '20.13.1'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build Node Project
-        run: yarn build
+        run: npm install --only-production
 
       - name: Google Cloud Auth
         uses: 'google-github-actions/auth@v2'
@@ -35,7 +32,7 @@ jobs:
 
       - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
-        
+
       - name: Configure environment variables
         run: |
           echo "env_variables:" >> app.yaml
