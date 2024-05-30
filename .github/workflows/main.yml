@@ -3,10 +3,10 @@ name: Deploy to Goggle App Engine (GAE)
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
@@ -35,7 +35,7 @@ jobs:
 
       - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
-        
+
       - name: Configure environment variables
         run: |
           echo "env_variables:" >> app.yaml
