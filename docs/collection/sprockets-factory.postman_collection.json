@@ -24,10 +24,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/sprocket",
-							"protocol": "http",
+							"raw": "{{localUrl}}/sprocket",
 							"host": [
-								"{{baseUrl}}"
+								"{{localUrl}}"
 							],
 							"path": [
 								"sprocket"
@@ -51,10 +50,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/sprocket",
-							"protocol": "http",
+							"raw": "{{localUrl}}/sprocket",
 							"host": [
-								"{{baseUrl}}"
+								"{{localUrl}}"
 							],
 							"path": [
 								"sprocket"
@@ -81,10 +79,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/sprocket/2",
-							"protocol": "http",
+							"raw": "{{localUrl}}/sprocket/2",
 							"host": [
-								"{{baseUrl}}"
+								"{{localUrl}}"
 							],
 							"path": [
 								"sprocket",
@@ -112,10 +109,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{baseUrl}}/sprocket?page=1&pageSize=3",
-							"protocol": "http",
+							"raw": "{{localUrl}}/sprocket?page=1&pageSize=10",
 							"host": [
-								"{{baseUrl}}"
+								"{{localUrl}}"
 							],
 							"path": [
 								"sprocket"
@@ -127,7 +123,7 @@
 								},
 								{
 									"key": "pageSize",
-									"value": "3"
+									"value": "10"
 								}
 							]
 						}
@@ -179,13 +175,22 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{baseUrl}}/factory",
-							"protocol": "http",
+							"raw": "{{localUrl}}/factory?page=1&pageSize=10",
 							"host": [
-								"{{baseUrl}}"
+								"{{localUrl}}"
 							],
 							"path": [
 								"factory"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
 							]
 						}
 					},
@@ -197,14 +202,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{baseUrl}}/factory/1",
-							"protocol": "http",
+							"raw": "{{localUrl}}/factory/6",
 							"host": [
-								"{{baseUrl}}"
+								"{{localUrl}}"
 							],
 							"path": [
 								"factory",
-								"1"
+								"6"
 							]
 						}
 					},
@@ -218,8 +222,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{baseUrl}}/healthcheck",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/healthcheck",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -253,8 +256,13 @@
 	],
 	"variable": [
 		{
-			"key": "baseUrl",
-			"value": "localhost:3000",
+			"key": "localUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "gcpUrl",
+			"value": "https://backendnode-dot-test-cloud-run-420321.uc.r.appspot.com/",
 			"type": "string"
 		}
 	]
